@@ -34,7 +34,7 @@
         <snapshotRepository>
             <id>deployment</id>
             <name>Internal Snapshot Releases</name>
-            <url>http://samhersi4c.mylabserver.com:8081/repository/maven-releases/</url>
+            <url>http://jacobhassan4c.mylabserver.com:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
   <dependencies>
