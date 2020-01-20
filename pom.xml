@@ -29,12 +29,12 @@
         <repository>
             <id>deployment</id>
             <name>Internal Releases</name>
-            <url>http://jacobhassan2c.mylabserver.com:8081/repository/maven-releases/</url>
+            <url>http://jacobhassan1c.mylabserver.com:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>deployment</id>
             <name>Internal Snapshot Releases</name>
-            <url>http://jacobhassan2c.mylabserver.com:8081/repository/maven-snapshots/</url>
+            <url>http://jacobhassan1c.mylabserver.com:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
   <dependencies>
