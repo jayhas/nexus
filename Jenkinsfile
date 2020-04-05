@@ -1,5 +1,8 @@
 pipeline{
     agent { label "dev" } 
+    environment {
+	    DOCKER_IMAGE_NAME = "jahas/mywebapp"
+    }
     stages{
 	stage(checkout){
 	  steps{
@@ -17,27 +20,22 @@ pipeline{
 	          }
 	     
 	                }
-	  stage(codequality){
-	       steps{
-	   withSonarQubeEnv('SonarqubeServer'){        
-	  sh '/usr/local/src/apache-maven/bin/mvn sonar:sonar'         
-	            }
-	       }
+	  stage('Build Docker Image') {
+	     when  {
+		  branch 'master'
+	     }
+	     steps {
+		  script{
+		     app = docker.build(DOCKER_IMAGE_NAME)
+		     app.inside {
+			     sh 'echo Hello, World!'
+		     }
+		  }
+	     }
 	  }
-	  stage(artifact){
-	      steps{
-	        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {   
-	    sh '/usr/local/src/apache-maven/bin/mvn deploy exit 1'
+		     	  
+
 	    
-	      }
-	                }
-	  }
-	   stage(deploy){
-	       steps{
-	       sh 'sudo scp /root/jenkins/workspace/pipeline/target/*.war root@jacobhassan2c.mylabserver.com:/var/lib/tomcat/webapps'
-	       }
-	       
-	                }
 	   }
 	  }
 	               
